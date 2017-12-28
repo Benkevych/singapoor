@@ -9,7 +9,7 @@ body {
   height: 100%;
 }
 
-// STYLES FOR THE LEFT COLUMN
+// STYLES FOR THE LEFT COLUMN*******************************************************************************
 .leftCol {
   float: left;
   width: 25%;
@@ -112,13 +112,12 @@ body {
   margin-top: 7%;
 }
 
+// CALENDAR STYLE*************************************************************************************
 .leftCol .leftArticle .calendar {
   float: left;
   margin-top: 4%;
   width: 80%;
   height: 31vh;
-  border: 1px solid rgb(125, 193, 224);
-  box-sizing: border-box;
 }
 
 .leftCol .leftArticle .calendar select {
@@ -129,7 +128,31 @@ body {
   margin-top: 5%;
 }
 
-// STYLES FOR THE RIGHT COLUMN
+// CALENDAR JQUERY STYLE*******************************************************************************
+.ui-datepicker-inline {
+  border: 1px solid rgb(125, 193, 224) !important;
+  border-radius: 0 !important;
+  width: calc(100% - 8px) !important;
+  height: 31vh !important;
+  background: none !important;
+}
+
+.ui-datepicker-header {
+  border: none !important;
+  background: none !important;
+}
+
+.ui-datepicker-calendar thead {
+  display: none !important;
+}
+
+.ui-datepicker-calendar tbody td a {
+  background: none !important;
+  border: none !important;
+  color: white !important;
+}
+
+// STYLES FOR THE RIGHT COLUMN*****************************************************************************
 .rightCol {
   float: left;
   width: 75%;

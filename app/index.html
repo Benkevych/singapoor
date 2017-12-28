@@ -17,9 +17,11 @@
 
   <!-- build:css styles/main.css -->
   <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
   <!-- endbuild -->
+
 
 
 </head>
@@ -89,9 +91,11 @@
         Specify start and end date SOC
       </div>
       <div class='calendar'>
-        <select class='month'>
-          <option value="">JANUARY</option>
-        </select>
+        <div id='datepicker'></div>
+        <script>
+          $("#datepicker").datepicker();
+
+        </script>
       </div>
     </div>
 
