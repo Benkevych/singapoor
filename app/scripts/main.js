@@ -7,6 +7,7 @@ var map = new google.maps.Map(document.getElementById('map'), {
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     scaleControl: true
 });
+var infowindow = new google.maps.InfoWindow({ maxWidth: 200 });
 
 var marker, i;
 // setting bounds makes sure all points are shown in the map when it starts
@@ -206,8 +207,6 @@ function beginMap() {
             var lat = latDDD;
             var lng = lonDDD;
             var dmy = RMCArray[10];
-            console.log(dmy);
-
             var ymd = "20" + dmy.substring(4) + "-" + dmy.substring(2, 4) + "-" + dmy.substring(0, 2);// convert ddmmyy to YYYY-MM-DD
             var time1 = time.substring(0, 2) + ":" + time.substring(2, 4) + ":" + time.substring(4, 6);
             var dateStamp = ymd + "T" + time1 + "Z";
@@ -335,47 +334,25 @@ function beginMap() {
 
                 position: myLatLng,
                 map: map,
-                icon: icon,//'http://trackertesting.x10host.com/FormInput/FormInput/dot-red-icon.png'
+                icon: icon,
                 //label:String(i)
                 //image:image1
             });
-            //push to array of markers for debugging and clustering
             markers.push(marker);
-            //set bounds for map sizing
             bounds.extend(marker.position);
-            //add listener for info window
             google.maps.event.addListener(marker, 'click', (function (marker, coordinatesIndex) {
-                //console.log(i);
                 return function () {
-                    //log marker number to console
-                    console.log(coordinatesIndex);
-                    //display time when marker is clicked
-                    //infowindow.setContent(String(coordinates[i][2]));
-                    // display battery SOC when clicked
-                    //infowindow.setContent(String(coordinates[i][3]));
-                    infowindow.setContent('<div><p style="float: left;"><img src="IMG_3110.JPG" style="width:50px;height:60px;"></p></div>' + 'ID:' + String(coordinates[coordinatesIndex][6]) + '<br>' + 'Battery SOC: ' + String(coordinates[coordinatesIndex][3]) + '%' + '  ' + coordinates[coordinatesIndex][4] + 'mV' + '     ' + 'Time: ' + String(coordinates[coordinatesIndex][2].substring(0, 6)) + '<button type="button" onclick="viewMore()">View More</button>');
+                    infowindow.setContent('<div style=""><p style="float: left;"><img src="IMG_3110.JPG" style="width:50px;height:60px;"></p></div>' + '<div style="color: black;"> ID:' + String(coordinates[coordinatesIndex][6]) + '<br>' + 'Battery SOC: ' + String(coordinates[coordinatesIndex][3]) + '%' + '  ' + coordinates[coordinatesIndex][4] + 'mV' + '     ' + 'Time: ' + String(coordinates[coordinatesIndex][2].substring(0, 6)) + '</div><button type="button" class="map-button" onclick="viewMore()">View More</button>');
                     //infowindow.setOptions({ position: myLatLng });
 
                     infowindow.open(map, marker);
-                    //infowindow.open(map);
                 };
             })(marker, coordinatesIndex));
-            //createPolyLine(); <button  id ="viewMore" class="btn btn-primary btn-sm" onclick="viewMore"  > View More</button>
-            //////////////////////////////////////////////////////////////////////<button type="button">Click Me!</button>
         }
-    }// end createMarkers
-    // set map boundry (overrides zoom level)
-    // if(markers.length>0){
-    // map.fitBounds(bounds);
-    // if(map.zoom>11){
-    //   map.setZoom(11);
-    // }
-    // }
-    //console.log("test");
+    }
     markers[markers.length - 1].setIcon(currentPositionIcon);
 }
 function startUpdate(startVal) {
-    //document.querySelector('#volume').value = vol;
     document.querySelector('#start').value = startVal;
     startValue = startVal;
     // need to use vol to show all markers with a previous index to show on map and hide all others
@@ -410,9 +387,6 @@ function startUpdate(startVal) {
 
             markers[i].setMap(null);
         }
-
-
-
     }
     if (Number(startValue) <= Number(endVal)) {
         markers[endVal].setIcon(currentPositionIcon);
@@ -426,75 +400,6 @@ function arrayObjectIndexOf(myArray, searchTerm, property) {
     return -1;
 }
 
-function Test() {
-    console.log("works");
-}
-
-function calendarConstrain() {
-    //want to iterate through all data for the selected device and remove markers with different date than selected and show markers with same date
-    //need to make sure date is based off local (SGT) time not UTC
-
-    // SGT is ahead of UTC by 8 hours
-
-    //so user selects a date in their timezone and we update the values in innerArray based on their offset 
-    inDay = 0;
-    outDay = 0;
-    var userOffset = new Date().getTimezoneOffset();// offset in minutes to get to UTC so UTC+8 returns -480
-    SGTOffset = 480;
-    var firstSOC = "1000";
-    var firstLogged = false;
-    var lastSOC = "1000";
-    var lastElement = 0;
-
-    for (var n = 0; n < deviceArray[arrayObjectIndexOf(deviceArray, selectedArray[0], "deviceId")].path.length; n++) {
-        //if selected date doesn't match date of datapoint + offset hide marker else show marker
-        var oldDate = new Date(deviceArray[arrayObjectIndexOf(deviceArray, selectedArray[0], "deviceId")].path[n][5]);// turn string into a date
-        var oldDateMilliseconds = oldDate.getTime();
-        var newDateMilliseconds = oldDateMilliseconds + (userOffset * 60 * 1000) + (SGTOffset * 60 * 1000);
-        var newDate = new Date(newDateMilliseconds);
-        var year = newDate.getFullYear();
-        var month = newDate.getMonth() + 1;
-        var day = newDate.getDate();
-        var formattedDateString = String(year) + "-" + ("0" + (newDate.getMonth() + 1)).slice(-2) + "-" + ("0" + newDate.getDate()).slice(-2);
-        //console.log("test");
-        //console.log(formattedDateString);
-        //console.log(document.getElementById('StartDate').test.value);
-        console.log("    ");
-        console.log(deviceArray[arrayObjectIndexOf(deviceArray, selectedArray[0], "deviceId")].path[n][5]);
-        console.log(oldDate);
-        console.log(formattedDateString);
-        console.log(document.getElementById('StartDate').test.value);
-        if (formattedDateString == document.getElementById('StartDate').test.value) {
-            markers[n].setMap(map);
-            //lastSoc=deviceArray[arrayObjectIndexOf(deviceArray,selectedArray[0],"deviceId")].path[n][3];
-
-            //console.log(firstLogged);
-
-            //console.log(deviceArray[arrayObjectIndexOf(deviceArray,selectedArray[0],"deviceId")].path[n][3]);
-            lastSOC = deviceArray[arrayObjectIndexOf(deviceArray, selectedArray[0], "deviceId")].path[n][3];
-            //console.log(lastSOC);
-            if (firstLogged === false) {
-                firstSOC = deviceArray[arrayObjectIndexOf(deviceArray, selectedArray[0], "deviceId")].path[n][3];
-                firstLogged = true;
-                //console.log("test");
-            }
-            inDay++;
-
-        }
-        else {
-            markers[n].setMap(null);
-            outDay++;
-        }
-        if (n == deviceArray[arrayObjectIndexOf(deviceArray, selectedArray[0], "deviceId")].path.length - 1) {
-            console.log(firstSOC);
-            console.log(lastSOC);
-            //document.getElementById("startSOC").innerHTML=firstSOC;
-            document.getElementById("percent").innerHTML = lastSOC;
-        }
-        // input format "2017-09-19"
-    }
-
-}
 function createSingleMarker(latitude, longitude, coordinatesIndex) {
     icon = {
         url: "http://trackertesting.x10host.com/FormInput/FormInput/dot-red-icon.png", // url
@@ -514,14 +419,7 @@ function createSingleMarker(latitude, longitude, coordinatesIndex) {
     });
     currentMarkers.push(marker);
     google.maps.event.addListener(marker, 'click', (function (marker, coordinatesIndex) {
-        //console.log(i);
         return function () {
-            //log marker number to console
-            console.log(coordinatesIndex);
-            //display time when marker is clicked
-            //infowindow.setContent(String(coordinates[i][2]));
-            // display battery SOC when clicked
-            //infowindow.setContent(String(coordinates[i][3]));
             infowindow.setContent('<div><p style="float: left;"><img src="IMG_3110.JPG" style="width:50px;height:60px;"></p></div>' + 'ID:' + String(coordinates[coordinatesIndex][6]) + 'Battery SOC: ' + String(coordinates[coordinatesIndex][3]) + '%' + '  ' + coordinates[coordinatesIndex][4] + 'mV' + '     ' + 'Time: ' + String(coordinates[coordinatesIndex][2].substring(0, 6)) + '<button type="button" onclick="viewMore()">View More</button>');
             //infowindow.setOptions({ position: myLatLng });
 
@@ -529,30 +427,16 @@ function createSingleMarker(latitude, longitude, coordinatesIndex) {
             //infowindow.open(map);
         };
     })(marker, coordinatesIndex));
-
 }
-function deviceHistory() {
-    // map as we currently do
-    console.log("history");
-    // $("#history").button('toggle');
-}
-$("#history").click(deviceHistory);
-
 function deviceCurrent() {
-    // only show most recent data point for each selected device
-
-    console.log("current");
     if (selectedArray == "All") {
-
         var coordinatesIndex = -1;
-        //console.log(coordinatesIndex);
         //check how many points are in each member of deviceArray and only show the last one
         for (a = 0; a < markers.length; a++) { // clear all points
             markers[a].setMap(null);
         }
-        for (b = 0; b < deviceArray.length; b++) {
+        for (var b = 0; b < deviceArray.length; b++) {
             // coordinatesIndex++;
-            //console.log(coordinatesIndex);
             if (deviceArray[b].path.length > 0) {
                 //console.log(deviceArray[b].path);
                 coordinatesIndex += deviceArray[b].path.length;
@@ -560,7 +444,6 @@ function deviceCurrent() {
             }
         }
     }
-    // $("#current").button('toggle');
 }
 $("#current").click(deviceCurrent);
 function updateSOCAndLocation() {
@@ -576,10 +459,8 @@ function updateSOCAndLocation() {
         document.getElementById("Longitude").innerText = lon;
     }
 }
-var testing = 0;
 function viewMore() {
     console.log("view More");
-    testing++;
 }
 function utilization() {
     var utilizedTime = 0;
@@ -670,8 +551,6 @@ function utilization() {
         // }
         // input format "2017-09-19"
     }
-    console.log(utilizedTime);
-    console.log(unUtilizedTime);
     drawChart(utilizedTime, unUtilizedTime);
 }
 $("#viewMore").click(viewMore);
