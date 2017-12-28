@@ -52,7 +52,6 @@ body {
   white-space: nowrap;
   width: calc(90% - 60px);
   margin-left: 10%;
-  height: 20px;
   font-weight: 400;
   font-size: 0.7em;
 }
@@ -71,7 +70,7 @@ body {
   float: left;
   width: 80%;
   border-bottom: 1px solid rgb(125, 193, 224);
-  padding-bottom: 2%;
+  padding-bottom: 3%;
   padding-top: 6%;
 }
 
@@ -79,22 +78,22 @@ body {
   background: black;
   float: left;
   margin-top: 0px;
-  width: 17px;
-  height: 17px;
+  width: 18px;
+  height: 18px;
 }
 
 .leftCol .leftArticle .row .rowsType {
   float: left;
   margin-left: 10px;
   width: calc(100% - 35px);
-  font-size: 0.6em;
-  font-weight: 100;
+  font-size: 0.7em;
 }
 
 .leftCol .leftArticle .row select {
   background: none;
   border: none;
   margin-left: 5px !important;
+  width: calc(100% - 25px) !important;
 }
 
 .leftCol .leftArticle .row .rowsInformation {
@@ -102,8 +101,32 @@ body {
   margin-left: 10px;
   margin-top: 5px;
   width: calc(100% - 30px);
-  font-size: 0.8em;
+  font-size: 0.9em;
   font-weight: 500;
+}
+
+.leftCol .leftArticle .specifyDate {
+  float: left;
+  width: 100%;
+  font-size: 0.7em;
+  margin-top: 7%;
+}
+
+.leftCol .leftArticle .calendar {
+  float: left;
+  margin-top: 4%;
+  width: 80%;
+  height: 31vh;
+  border: 1px solid rgb(125, 193, 224);
+  box-sizing: border-box;
+}
+
+.leftCol .leftArticle .calendar select {
+  float: left;
+  background: none;
+  border: none;
+  margin-left: calc(50% - 40px);
+  margin-top: 5%;
 }
 
 // STYLES FOR THE RIGHT COLUMN
@@ -113,3 +136,77 @@ body {
   height: 100vh;
   background: black;
 }
+
+// @media (min-height: 320px) and (max-height: 374px) {
+//   .leftCol {
+//     width: 30%;
+//     height: 100vh;
+//   }
+//   .leftCol .leftHeader {
+//     padding: 3%;
+//     padding-left: 6%;
+//     width: 100%;
+//   }
+//   .leftCol .leftHeader .avatar {
+//     width: 30px;
+//     height: 30px;
+//   }
+//   .leftCol .leftHeader .userName {
+//     width: calc(90% - 30px);
+//     margin-top: 2%;
+//     margin-left: 10%;
+//     font-size: 0.6em;
+//   }
+//   .leftCol .leftHeader .userId {
+//     width: calc(90% - 60px);
+//     margin-left: 10%;
+//     margin-top: -4%;
+//     font-weight: 400;
+//     font-size: 0.4em;
+//   }
+//   .leftCol .leftArticle {
+//     padding: 3%;
+//     padding-right: 6%;
+//     padding-left: 6%;
+//     width: 100%;
+//   }
+//   .leftCol .leftArticle .row {
+//     width: 88%;
+//     padding-bottom: 3%;
+//     padding-top: 3%;
+//   }
+//   .leftCol .leftArticle .row .image {
+//     width: 14px;
+//     height: 14px;
+//   }
+//   .leftCol .leftArticle .row .rowsType {
+//     margin-left: 10px;
+//     width: calc(100% - 35px);
+//     font-size: 0.4em;
+//   }
+//   .leftCol .leftArticle .row select {
+//     margin-left: 5px !important;
+//     width: calc(100% - 25px) !important;
+//   }
+//   .leftCol .leftArticle .row .rowsInformation {
+//     margin-left: 10px;
+//     margin-top: 1%;
+//     width: calc(100% - 30px);
+//     font-size: 0.7em;
+//     font-weight: 500;
+//   }
+//   .leftCol .leftArticle .specifyDate {
+//     width: 100%;
+//     font-size: 0.4em;
+//     margin-top: 7%;
+//   }
+//   .leftCol .leftArticle .calendar {
+//     margin-top: 4%;
+//     width: 88%;
+//     height: 34vh;
+//   } // STYLES FOR THE RIGHT COLUMN
+//   .rightCol {
+//     width: 70%;
+//     height: 100vh;
+//   }
+// }
