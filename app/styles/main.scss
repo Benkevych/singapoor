@@ -7,6 +7,7 @@
 body {
   width: 100%;
   height: 100%;
+  font-family: Roboto;
 }
 
 // STYLES FOR THE LEFT COLUMN*******************************************************************************
@@ -44,7 +45,7 @@ body {
   margin-top: 14px;
   margin-left: 10%;
   height: 20px;
-  font-family: 'Roboto', sans-serif;
+  font-size: 1.1em;
 }
 
 .leftCol .leftHeader .userId {
@@ -54,8 +55,7 @@ body {
   width: calc(90% - 60px);
   margin-left: 10%;
   font-weight: 400;
-  font-size: 0.7em;
-  font-family: 'Open Sans', sans-serif;
+  font-size: 0.8em;
 }
 
 .leftCol .leftArticle {
@@ -89,7 +89,7 @@ body {
   float: left;
   margin-left: 10px;
   width: calc(100% - 35px);
-  font-size: 0.6em;
+  font-size: 0.8em;
   font-family: 'Montserrat', sans-serif;
   font-weight: 300;
 }
@@ -118,7 +118,7 @@ body {
 .leftCol .leftArticle .specifyDate {
   float: left;
   width: 100%;
-  font-size: 0.7em;
+  font-size: 0.9em;
   margin-top: 7%;
 }
 
@@ -127,7 +127,7 @@ body {
   float: left;
   width: 100%;
   padding-top: 100%;
-  margin-top: 10px
+  margin-top: 10px;
   position: relative;
 }
 #datepicker{
@@ -221,6 +221,8 @@ body {
   float: left;
   height: 3%;
   width: 97%;
+  display: flex;
+  align-items: center;
   background: white;
   padding: 1%;
   padding-left: 2%;
@@ -240,8 +242,24 @@ body {
   width: 100%;
   height: 100%;
   background-color: grey;
+ 
 }
-
+.map{
+  position: relative;
+  .btn-group{
+    position: absolute;
+    top:5px;
+    left: 50%;
+    transform: translateX(-50%);
+    #history,
+    #current{
+      padding: 10px;
+      background-color: white;
+      border:none;
+      color: black;
+    }
+  }
+}
 .map-button {
   background-color: #7ea5e7;
   color: white;
