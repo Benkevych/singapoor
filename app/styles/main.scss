@@ -202,7 +202,8 @@ body {
   text-align: center !important;
 }
 
-.ui-datepicker-calendar tbody td a:hover {
+.ui-datepicker-calendar tbody td a:hover,
+.ui-datepicker-calendar .ui-state-active {
   background: orange !important;
   border-radius: 50% !important;
 }
