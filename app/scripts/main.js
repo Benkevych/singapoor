@@ -5,9 +5,70 @@ var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 11,
     center: new google.maps.LatLng(1.2674, 103.82700833333334),
     mapTypeId: google.maps.MapTypeId.ROADMAP,
-    scaleControl: true,
+    disableDefaultUI: true,
     styles: [{ "featureType": "water", "elementType": "geometry", "stylers": [{ "color": "#e9e9e9" }, { "lightness": 17 }] }, { "featureType": "landscape", "elementType": "geometry", "stylers": [{ "color": "#f5f5f5" }, { "lightness": 20 }] }, { "featureType": "road.highway", "elementType": "geometry.fill", "stylers": [{ "color": "#ffffff" }, { "lightness": 17 }] }, { "featureType": "road.highway", "elementType": "geometry.stroke", "stylers": [{ "color": "#ffffff" }, { "lightness": 29 }, { "weight": 0.2 }] }, { "featureType": "road.arterial", "elementType": "geometry", "stylers": [{ "color": "#ffffff" }, { "lightness": 18 }] }, { "featureType": "road.local", "elementType": "geometry", "stylers": [{ "color": "#ffffff" }, { "lightness": 16 }] }, { "featureType": "poi", "elementType": "geometry", "stylers": [{ "color": "#f5f5f5" }, { "lightness": 21 }] }, { "featureType": "poi.park", "elementType": "geometry", "stylers": [{ "color": "#dedede" }, { "lightness": 21 }] }, { "elementType": "labels.text.stroke", "stylers": [{ "visibility": "on" }, { "color": "#ffffff" }, { "lightness": 16 }] }, { "elementType": "labels.text.fill", "stylers": [{ "saturation": 36 }, { "color": "#333333" }, { "lightness": 40 }] }, { "elementType": "labels.icon", "stylers": [{ "visibility": "off" }] }, { "featureType": "transit", "elementType": "geometry", "stylers": [{ "color": "#f2f2f2" }, { "lightness": 19 }] }, { "featureType": "administrative", "elementType": "geometry.fill", "stylers": [{ "color": "#fefefe" }, { "lightness": 20 }] }, { "featureType": "administrative", "elementType": "geometry.stroke", "stylers": [{ "color": "#fefefe" }, { "lightness": 17 }, { "weight": 1.2 }] }]
 });
+google.charts.load('current', { 'packages': ['corechart'] });
+google.charts.setOnLoadCallback(drawChart);
+$(window).resize(function () {
+    drawChart();
+});
+function drawChart() {
+    var chartwidth = $('#lines').width();
+    var chartheight = $('#lines').height();
+    var linedata = google.visualization.arrayToDataTable([
+        ['', 'Current Utilization ', 'Currently in premise'],
+        ['', 1000, 400],
+        ['', 1170, 460],
+        ['', 660, 1120],
+        ['', 1030, 540],
+        ['', 6432, 1120],
+        ['', 4553, 3213],
+        ['', 4324, 321],
+        ['', 660, 233],
+        ['', 665, 244],
+        ['', 6666, 4555],
+        ['', 645, 223],
+        ['', 1242, 890],
+        ['', 234, 100],
+        ['', 2430, 1800],
+    ]);
+
+    var lineoptions = {
+        chartArea: { width: chartwidth + 10, left: 0, top: 20, height: chartheight - 30 },
+        title: 'Current Utilisation',
+        legend: { position: 'top' },
+        vAxis: {
+            textPosition: 'none'
+        },
+        series: {
+            0: { color: '#00c7ff' },
+            1: { color: '#ffa600' },
+        },
+    };
+
+    var chart1 = new google.visualization.AreaChart(document.getElementById('lines'));
+
+    chart1.draw(linedata, lineoptions);
+    var piewidth = $('#pie').width();
+    var pietheight = $('#pie').height();
+    var piedata = google.visualization.arrayToDataTable([
+        ['', ''],
+        ['Currently in premise', 35],
+        ['Current Utilization', 65],
+    ]);
+
+    var pieoptions = {
+        // chartArea: { width: piewidth + 10, left: 0, top: 20, height: pieheight - 30 },
+        title: 'Total Utilization',
+        colors: ['#ffa600', '#00c7ff'],
+        legend: { position: 'none' }
+    };
+
+    var chart2 = new google.visualization.PieChart(document.getElementById('pie'));
+
+    chart2.draw(piedata, pieoptions);
+}
 var infowindow = new google.maps.InfoWindow({ maxWidth: 200 });
 
 var marker, i;
@@ -343,7 +404,7 @@ function beginMap() {
             bounds.extend(marker.position);
             google.maps.event.addListener(marker, 'click', (function (marker, coordinatesIndex) {
                 return function () {
-                    infowindow.setContent('<div style=""><p style="float: left;"><img src="IMG_3110.JPG" style="width:50px;height:60px;"></p></div>' + '<div style="color: black;"> ID:' + String(coordinates[coordinatesIndex][6]) + '<br>' + 'Battery SOC: ' + String(coordinates[coordinatesIndex][3]) + '%' + '  ' + coordinates[coordinatesIndex][4] + 'mV' + '     ' + 'Time: ' + String(coordinates[coordinatesIndex][2].substring(0, 2) + ":" + coordinates[coordinatesIndex][2].substring(2, 2) + ":" + coordinates[coordinatesIndex][2].substring(4, 2)) + '</div><button type="button" class="map-button" onclick="viewMore()">View More</button>');
+                    infowindow.setContent('<div class="info-window"><p class="info-img"><img src="IMG_3110.JPG" ></p>' + '<div><div style="color: black;"> ID:' + String(coordinates[coordinatesIndex][6]) + '<br>' + 'Battery SOC: ' + String(coordinates[coordinatesIndex][3]) + '%' + '  ' + coordinates[coordinatesIndex][4] + 'mV' + '     ' + 'Time: ' + String(coordinates[coordinatesIndex][2].substring(0, 2)) + ":" + String(coordinates[coordinatesIndex][2].substring(4, 2)) + '</div><button type="button" class="map-button" onclick="viewMore()">View More</button></div></div>');
                     //infowindow.setOptions({ position: myLatLng });
 
                     infowindow.open(map, marker);
@@ -430,6 +491,7 @@ function createSingleMarker(latitude, longitude, coordinatesIndex) {
     })(marker, coordinatesIndex));
 }
 function deviceCurrent() {
+    console.log('current');
     if (selectedArray == "All") {
         var coordinatesIndex = -1;
         //check how many points are in each member of deviceArray and only show the last one

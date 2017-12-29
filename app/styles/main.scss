@@ -205,7 +205,7 @@ body {
 
 .ui-datepicker-calendar tbody td a:hover,
 .ui-datepicker-calendar .ui-state-active {
-  background: orange !important;
+  background: rgb(255, 166, 0) !important;
   border-radius: 50% !important;
 }
 
@@ -275,4 +275,41 @@ body {
   float: left;
   width: 100%; // background: rgb(49, 32, 161);
   height: 35%;
+  display: flex;
+  flex-direction: row;
+  #lines{
+    height: 100%;
+    width: 70%;
+  }
+  #pie{
+    height: 100%;
+    width: 30%;
+  }
+}
+.gm-style-iw{
+  top: 0 !important;
+  left: 0 !important;
+  width: 250px !important;
+  height: 117px !important;
+  div{
+    width: 100% !important;
+    max-width: unset !important;
+  }
+}
+.info-window{
+  width: 253px;
+  height: 117px;
+  display: flex;
+  flex-direction: row;
+}
+.info-img{
+  height: 100%;
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  img{
+   height: 100%;
+  }
 }
