@@ -1,12 +1,12 @@
 console.log('\'Allo \'Allo!');
-$("#datepicker").datepicker();
+$('#datepicker').datepicker();
 
 var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 11,
     center: new google.maps.LatLng(1.2674, 103.82700833333334),
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     disableDefaultUI: true,
-    styles: [{ "featureType": "water", "elementType": "geometry", "stylers": [{ "color": "#e9e9e9" }, { "lightness": 17 }] }, { "featureType": "landscape", "elementType": "geometry", "stylers": [{ "color": "#f5f5f5" }, { "lightness": 20 }] }, { "featureType": "road.highway", "elementType": "geometry.fill", "stylers": [{ "color": "#ffffff" }, { "lightness": 17 }] }, { "featureType": "road.highway", "elementType": "geometry.stroke", "stylers": [{ "color": "#ffffff" }, { "lightness": 29 }, { "weight": 0.2 }] }, { "featureType": "road.arterial", "elementType": "geometry", "stylers": [{ "color": "#ffffff" }, { "lightness": 18 }] }, { "featureType": "road.local", "elementType": "geometry", "stylers": [{ "color": "#ffffff" }, { "lightness": 16 }] }, { "featureType": "poi", "elementType": "geometry", "stylers": [{ "color": "#f5f5f5" }, { "lightness": 21 }] }, { "featureType": "poi.park", "elementType": "geometry", "stylers": [{ "color": "#dedede" }, { "lightness": 21 }] }, { "elementType": "labels.text.stroke", "stylers": [{ "visibility": "on" }, { "color": "#ffffff" }, { "lightness": 16 }] }, { "elementType": "labels.text.fill", "stylers": [{ "saturation": 36 }, { "color": "#333333" }, { "lightness": 40 }] }, { "elementType": "labels.icon", "stylers": [{ "visibility": "off" }] }, { "featureType": "transit", "elementType": "geometry", "stylers": [{ "color": "#f2f2f2" }, { "lightness": 19 }] }, { "featureType": "administrative", "elementType": "geometry.fill", "stylers": [{ "color": "#fefefe" }, { "lightness": 20 }] }, { "featureType": "administrative", "elementType": "geometry.stroke", "stylers": [{ "color": "#fefefe" }, { "lightness": 17 }, { "weight": 1.2 }] }]
+    styles: [{ 'featureType': 'water', 'elementType': 'geometry', 'stylers': [{ 'color': '#e9e9e9' }, { 'lightness': 17 }] }, { 'featureType': 'landscape', 'elementType': 'geometry', 'stylers': [{ 'color': '#f5f5f5' }, { 'lightness': 20 }] }, { 'featureType': 'road.highway', 'elementType': 'geometry.fill', 'stylers': [{ 'color': '#ffffff' }, { 'lightness': 17 }] }, { 'featureType': 'road.highway', 'elementType': 'geometry.stroke', 'stylers': [{ 'color': '#ffffff' }, { 'lightness': 29 }, { 'weight': 0.2 }] }, { 'featureType': 'road.arterial', 'elementType': 'geometry', 'stylers': [{ 'color': '#ffffff' }, { 'lightness': 18 }] }, { 'featureType': 'road.local', 'elementType': 'geometry', 'stylers': [{ 'color': '#ffffff' }, { 'lightness': 16 }] }, { 'featureType': 'poi', 'elementType': 'geometry', 'stylers': [{ 'color': '#f5f5f5' }, { 'lightness': 21 }] }, { 'featureType': 'poi.park', 'elementType': 'geometry', 'stylers': [{ 'color': '#dedede' }, { 'lightness': 21 }] }, { 'elementType': 'labels.text.stroke', 'stylers': [{ 'visibility': 'on' }, { 'color': '#ffffff' }, { 'lightness': 16 }] }, { 'elementType': 'labels.text.fill', 'stylers': [{ 'saturation': 36 }, { 'color': '#333333' }, { 'lightness': 40 }] }, { 'elementType': 'labels.icon', 'stylers': [{ 'visibility': 'off' }] }, { 'featureType': 'transit', 'elementType': 'geometry', 'stylers': [{ 'color': '#f2f2f2' }, { 'lightness': 19 }] }, { 'featureType': 'administrative', 'elementType': 'geometry.fill', 'stylers': [{ 'color': '#fefefe' }, { 'lightness': 20 }] }, { 'featureType': 'administrative', 'elementType': 'geometry.stroke', 'stylers': [{ 'color': '#fefefe' }, { 'lightness': 17 }, { 'weight': 1.2 }] }]
 });
 google.charts.load('current', { 'packages': ['corechart'] });
 google.charts.setOnLoadCallback(drawChart);
@@ -83,27 +83,27 @@ var coordinates = [];
 var count = -1;
 var cluster = false;
 var polyArray = [];
-var container = "";
+var container = '';
 var currentSpeed = 0;//update current speed each time and add to avg speed
 var avgSpeed = 0;
 var counter2 = 0;
 var coordinatesIndex = 0;
 var currentMarkers = [];
-var units = "metric";
+var units = 'metric';
 var polyLines = [];
 //get selected options
 // document.getElementById('StartDate').test.valueAsDate = new Date();
 var now = new Date();
-var lastTime = "144500";
-var lastDate = "210617";
-var lastYear = "20" + lastDate.substring(4);
+var lastTime = '144500';
+var lastDate = '210617';
+var lastYear = '20' + lastDate.substring(4);
 var lastMonth = lastDate.substring(2, 4);
 var lastDay = lastDate.substring(0, 2);
 var lastHour = lastTime.substring(0, 2);
 var lastMinute = lastTime.substring(2, 4);
 var lastSecond = lastTime.substring(4);
 //var d = new Date("2015-03-25T12:00:00Z"); formate to create a full date T separates time Z denotes UTC timezone
-var dateString = lastYear + "-" + lastMonth + "-" + lastDay + "T" + lastHour + ":" + lastMinute + ":" + lastSecond;//+"Z";
+var dateString = lastYear + '-' + lastMonth + '-' + lastDay + 'T' + lastHour + ':' + lastMinute + ':' + lastSecond;//+"Z";
 var oldDate = new Date(dateString);
 var miliSecondsSinceTransmission = now - oldDate;
 var inDay = 0;
@@ -130,7 +130,7 @@ var hoursSinceTransmission = minutesSinceTransmission / 60;
 
 
 
-var a = document.getElementsByName("list")[0];
+var a = document.getElementsByName('list')[0];
 var selected = a.selectedOptions;
 var currentSpeedKnots = 10;
 var currentSpeedMph = currentSpeedKnots * 1.15078;
@@ -138,7 +138,7 @@ var currentSpeedKmh = currentSpeedKnots * 1.852;
 var avgSpeedKnots = 5;
 var avgSpeedMph = avgSpeedKnots * 1.15078;
 var avgSpeedKmh = avgSpeedKnots * 1.852;
-var deviceIdArray = ["89372021161013006004", "89372021161013005998", "89372021161013005980", "89372021161013005972", "89372021161013005964", "89372021161013005956", "89372021161013005949", "89372021161013005931", "89372021161013005923", "89372021161013002128", "89372021140303147991", "89372021140303147983", "89372021140303147975", "89372021140303147967", "89372021140303147959", "357520071754515", "357520071760884", "357520071775908", "357520071767285", "357520071752758", "357520071775981", "357520071753012", "357520071754176", "357520071754127", "357520071752824", "357520071760736", "357520071753046", "357520071775924", "357520071760934", "357520071767624", "357520071754192", "357520071754150", "357520071754184"];
+var deviceIdArray = ['89372021161013006004', '89372021161013005998', '89372021161013005980', '89372021161013005972', '89372021161013005964', '89372021161013005956', '89372021161013005949', '89372021161013005931', '89372021161013005923', '89372021161013002128', '89372021140303147991', '89372021140303147983', '89372021140303147975', '89372021140303147967', '89372021140303147959', '357520071754515', '357520071760884', '357520071775908', '357520071767285', '357520071752758', '357520071775981', '357520071753012', '357520071754176', '357520071754127', '357520071752824', '357520071760736', '357520071753046', '357520071775924', '357520071760934', '357520071767624', '357520071754192', '357520071754150', '357520071754184'];
 // trying array of objects
 var deviceArray = []; // add object to this in the same order as the device ID array if possible
 for (var i = 0; i < deviceIdArray.length; i++) {
@@ -195,14 +195,14 @@ function beginMap() {
         //need to check if IMEI!=Null 
         // use that as trigger to change the variables below
         var innerArray = [];
-        var lat = "";
-        var latH = "";
-        var lon = "";
-        var lonH = "";
-        var time = "";
-        var date = "";
-        var deviceId = "";
-        var charge = "";
+        var lat = '';
+        var latH = '';
+        var lon = '';
+        var lonH = '';
+        var time = '';
+        var date = '';
+        var deviceId = '';
+        var charge = '';
 
 
         // if(test[i].IMEI===null){
@@ -269,9 +269,9 @@ function beginMap() {
             var lat = latDDD;
             var lng = lonDDD;
             var dmy = RMCArray[10];
-            var ymd = "20" + dmy.substring(4) + "-" + dmy.substring(2, 4) + "-" + dmy.substring(0, 2);// convert ddmmyy to YYYY-MM-DD
-            var time1 = time.substring(0, 2) + ":" + time.substring(2, 4) + ":" + time.substring(4, 6);
-            var dateStamp = ymd + "T" + time1 + "Z";
+            var ymd = '20' + dmy.substring(4) + '-' + dmy.substring(2, 4) + '-' + dmy.substring(0, 2);// convert ddmmyy to YYYY-MM-DD
+            var time1 = time.substring(0, 2) + ':' + time.substring(2, 4) + ':' + time.substring(4, 6);
+            var dateStamp = ymd + 'T' + time1 + 'Z';
 
 
             //Negation statements for Hemisphere correction
@@ -351,8 +351,8 @@ function beginMap() {
         //markers[markers.length-1].setIcon(currentPositionIcon);
     }
     //markers[markers.length-1].setIcon(currentPositionIcon);
-    document.getElementById("battVoltage").innerHTML = lastSOC[0];
-    document.getElementById("percent").innerHTML = lastSOC[1];
+    document.getElementById('battVoltage').innerHTML = lastSOC[0];
+    document.getElementById('percent').innerHTML = lastSOC[1];
     //set last marker to different color or image
     //also update endSlider to be length of #markers in path
     //volLength=deviceArray[arrayObjectIndexOf(deviceArray,selectedArray[0],"deviceId")].path.length-1;
@@ -369,19 +369,19 @@ function beginMap() {
     // document.querySelector('#volume').value = volLength;
 
     function createMarkers() {
-        if (selectedArray.includes(deviceId) || selectedArray.includes("All")) {
+        if (selectedArray.includes(deviceId) || selectedArray.includes('All')) {
             coordinatesIndex++;
             coordinates.push(innerArray);
             var myLatLng = new google.maps.LatLng(latDDD, lonDDD);
             icon = {
-                url: "http://trackertesting.x10host.com/FormInput/FormInput/dot-red-icon.png", // url
+                url: 'http://trackertesting.x10host.com/FormInput/FormInput/dot-red-icon.png', // url
                 scaledSize: new google.maps.Size(8, 8), // scaled size
                 origin: new google.maps.Point(0, 0), // origin
                 anchor: new google.maps.Point(4, 4), // anchor
                 zIndex: 5
             };
             currentPositionIcon = {
-                url: "http://trackertesting.x10host.com/FormInput/FormInput/dot-blue-icon.png", // url
+                url: 'http://trackertesting.x10host.com/FormInput/FormInput/dot-blue-icon.png', // url
                 scaledSize: new google.maps.Size(16, 16), // scaled size
                 origin: new google.maps.Point(0, 0), // origin
                 anchor: new google.maps.Point(8, 8), // anchor
@@ -404,7 +404,7 @@ function beginMap() {
             bounds.extend(marker.position);
             google.maps.event.addListener(marker, 'click', (function (marker, coordinatesIndex) {
                 return function () {
-                    infowindow.setContent('<div class="info-window"><p class="info-img"><img src="IMG_3110.JPG" ></p>' + '<div><div style="color: black;"> ID:' + String(coordinates[coordinatesIndex][6]) + '<br>' + 'Battery SOC: ' + String(coordinates[coordinatesIndex][3]) + '%' + '  ' + coordinates[coordinatesIndex][4] + 'mV' + '     ' + 'Time: ' + String(coordinates[coordinatesIndex][2].substring(0, 2)) + ":" + String(coordinates[coordinatesIndex][2].substring(4, 2)) + '</div><button type="button" class="map-button" onclick="viewMore()">View More</button></div></div>');
+                    infowindow.setContent('<div class="info-window"><p class="info-img"><img src="IMG_3110.JPG" ></p>' + '<div style="padding-top: 20px;"><div style="color: black;"> ID:' + String(coordinates[coordinatesIndex][6]) + '<br>' + 'Battery SOC: ' + String(coordinates[coordinatesIndex][3]) + '%' + '  ' + coordinates[coordinatesIndex][4] + 'mV' + '     ' + 'Time: ' + String(coordinates[coordinatesIndex][2].substring(0, 2)) + ':' + String(coordinates[coordinatesIndex][2].substring(4, 2)) + '</div><button type="button" class="map-button" onclick="viewMore()">View More</button></div></div>');
                     //infowindow.setOptions({ position: myLatLng });
 
                     infowindow.open(map, marker);
@@ -464,7 +464,7 @@ function arrayObjectIndexOf(myArray, searchTerm, property) {
 
 function createSingleMarker(latitude, longitude, coordinatesIndex) {
     icon = {
-        url: "http://trackertesting.x10host.com/FormInput/FormInput/dot-red-icon.png", // url
+        url: 'http://trackertesting.x10host.com/FormInput/FormInput/dot-red-icon.png', // url
         scaledSize: new google.maps.Size(8, 8), // scaled size
         origin: new google.maps.Point(0, 0), // origin
         anchor: new google.maps.Point(4, 4), // anchor
@@ -492,7 +492,7 @@ function createSingleMarker(latitude, longitude, coordinatesIndex) {
 }
 function deviceCurrent() {
     console.log('current');
-    if (selectedArray == "All") {
+    if (selectedArray == 'All') {
         var coordinatesIndex = -1;
         //check how many points are in each member of deviceArray and only show the last one
         for (a = 0; a < markers.length; a++) { // clear all points
@@ -508,27 +508,27 @@ function deviceCurrent() {
         }
     }
 }
-$("#current").click(deviceCurrent);
+$('#current').click(deviceCurrent);
 function updateSOCAndLocation() {
-    if (selectedArray != "All") {
-        a = deviceArray[arrayObjectIndexOf(deviceArray, selectedArray[0], "deviceId")].path[deviceArray[arrayObjectIndexOf(deviceArray, selectedArray[0], "deviceId")].path.length - 1];
+    if (selectedArray != 'All') {
+        a = deviceArray[arrayObjectIndexOf(deviceArray, selectedArray[0], 'deviceId')].path[deviceArray[arrayObjectIndexOf(deviceArray, selectedArray[0], 'deviceId')].path.length - 1];
         var soc = a[3];
         var battV = a[4];
         var lat = Number((a[0]).toFixed(8));
         var lon = Number((a[1]).toFixed(8));
-        document.getElementById("battVoltage").innerText = battV;
-        document.getElementById("percent").innerText = soc;
-        document.getElementById("Latitude").innerText = lat;
-        document.getElementById("Longitude").innerText = lon;
+        document.getElementById('battVoltage').innerText = battV;
+        document.getElementById('percent').innerText = soc;
+        document.getElementById('Latitude').innerText = lat;
+        document.getElementById('Longitude').innerText = lon;
     }
 }
 function viewMore() {
-    console.log("view More");
+    console.log('view More');
 }
 function utilization() {
     var utilizedTime = 0;
     var unUtilizedTime = 0;
-    for (var n = 1; n < deviceArray[arrayObjectIndexOf(deviceArray, selectedArray[0], "deviceId")].path.length; n++) {
+    for (var n = 1; n < deviceArray[arrayObjectIndexOf(deviceArray, selectedArray[0], 'deviceId')].path.length; n++) {
         //if selected date doesn't match date of datapoint + offset hide marker else show marker
         // var oldDate = new Date(deviceArray[arrayObjectIndexOf(deviceArray,selectedArray[0],"deviceId")].path[n][5]);// turn string into a date
         // var oldDateMilliseconds = oldDate.getTime();
@@ -539,8 +539,8 @@ function utilization() {
         // var day = newDate.getDate();
         // var formattedDateString = String(year)+"-"+("0" + (newDate.getMonth() + 1)).slice(-2)+"-"+("0" + newDate.getDate()).slice(-2);
 
-        var lastTimeStamp = new Date(deviceArray[arrayObjectIndexOf(deviceArray, selectedArray[0], "deviceId")].path[n - 1][5]);
-        var currentTimeStamp = new Date(deviceArray[arrayObjectIndexOf(deviceArray, selectedArray[0], "deviceId")].path[n][5]);
+        var lastTimeStamp = new Date(deviceArray[arrayObjectIndexOf(deviceArray, selectedArray[0], 'deviceId')].path[n - 1][5]);
+        var currentTimeStamp = new Date(deviceArray[arrayObjectIndexOf(deviceArray, selectedArray[0], 'deviceId')].path[n][5]);
         var difference = currentTimeStamp - lastTimeStamp;
         // console.log(lastTimeStamp);
         // console.log(currentTimeStamp);
@@ -558,8 +558,8 @@ function utilization() {
 
         //google.maps.geometry.spherical.computeDistanceBetween (latLngA, latLngB);
         var custLocation = new google.maps.LatLng(latRef, lonRef);
-        var lastLocation = new google.maps.LatLng(deviceArray[arrayObjectIndexOf(deviceArray, selectedArray[0], "deviceId")].path[n - 1][0], deviceArray[arrayObjectIndexOf(deviceArray, selectedArray[0], "deviceId")].path[n - 1][1]);
-        var currentLocation = new google.maps.LatLng(deviceArray[arrayObjectIndexOf(deviceArray, selectedArray[0], "deviceId")].path[n][0], deviceArray[arrayObjectIndexOf(deviceArray, selectedArray[0], "deviceId")].path[n][1]);
+        var lastLocation = new google.maps.LatLng(deviceArray[arrayObjectIndexOf(deviceArray, selectedArray[0], 'deviceId')].path[n - 1][0], deviceArray[arrayObjectIndexOf(deviceArray, selectedArray[0], 'deviceId')].path[n - 1][1]);
+        var currentLocation = new google.maps.LatLng(deviceArray[arrayObjectIndexOf(deviceArray, selectedArray[0], 'deviceId')].path[n][0], deviceArray[arrayObjectIndexOf(deviceArray, selectedArray[0], 'deviceId')].path[n][1]);
         //var distance=google.maps.geometry.spherical.computeDistanceBetween (lastLocation, currentLocation);// calculates dist between 2 points in meters
         var distance = google.maps.geometry.spherical.computeDistanceBetween(custLocation, currentLocation);// calculates current distance from cogent
         console.log('distance');
@@ -616,4 +616,4 @@ function utilization() {
     }
     drawChart(utilizedTime, unUtilizedTime);
 }
-$("#viewMore").click(viewMore);
+$('#viewMore').click(viewMore);
