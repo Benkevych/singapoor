@@ -44,7 +44,7 @@ body {
   margin-top: 14px;
   margin-left: 10%;
   height: 20px;
-  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
 }
 
 .leftCol .leftHeader .userId {
@@ -55,6 +55,7 @@ body {
   margin-left: 10%;
   font-weight: 400;
   font-size: 0.7em;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .leftCol .leftArticle {
@@ -86,7 +87,9 @@ body {
   float: left;
   margin-left: 10px;
   width: calc(100% - 35px);
-  font-size: 0.7em;
+  font-size: 0.6em;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
 }
 
 .leftCol .leftArticle .row select {
@@ -98,8 +101,7 @@ body {
 
 .leftCol .leftArticle .row select>option {
   background: rgb(148, 183, 247);
-  border: none; // margin-left: 5px !important;
-  // width: calc(100% - 25px) !important;
+  border: none;
 }
 
 .leftCol .leftArticle .row .rowsInformation {
@@ -107,7 +109,7 @@ body {
   margin-left: 10px;
   margin-top: 5px;
   width: calc(100% - 30px);
-  font-size: 0.9em;
+  font-size: 1em;
   font-weight: 500;
 }
 
