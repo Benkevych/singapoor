@@ -1,6 +1,9 @@
 console.log('\'Allo \'Allo!');
-$('#datepicker').datepicker();
+$('#datepicker').datepicker().on("change", function () {
+    $('#today').text($.format.date(new Date(this.value), "ddd, d MMMM yyyy"));
 
+});
+$('#today').text($.format.date(new Date(), "ddd, d MMMM yyyy"));
 var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 11,
     center: new google.maps.LatLng(1.2674, 103.82700833333334),
