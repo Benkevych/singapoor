@@ -7,6 +7,13 @@
 body {
   width: 100%;
   height: 100%;
+  font-family: Roboto;
+  a {
+    text-decoration: none;
+    &::hover {
+      text-decoration: none;
+    }
+  }
 }
 
 // STYLES FOR THE LEFT COLUMN*******************************************************************************
@@ -44,7 +51,7 @@ body {
   margin-top: 14px;
   margin-left: 10%;
   height: 20px;
-  font-family: 'Roboto', sans-serif;
+  font-size: 1.1em;
 }
 
 .leftCol .leftHeader .userId {
@@ -54,8 +61,7 @@ body {
   width: calc(90% - 60px);
   margin-left: 10%;
   font-weight: 400;
-  font-size: 0.7em;
-  font-family: 'Open Sans', sans-serif;
+  font-size: 0.8em;
 }
 
 .leftCol .leftArticle {
@@ -65,11 +71,13 @@ body {
   padding-right: 10%;
   padding-left: 10%;
   width: 100%;
+  box-sizing: border-box;
+  height: 100%;
 }
 
 .leftCol .leftArticle .row {
   float: left;
-  width: 80%;
+  width: 100%;
   border-bottom: 1px solid rgb(125, 193, 224);
   padding-bottom: 3%;
   padding-top: 6%;
@@ -87,7 +95,7 @@ body {
   float: left;
   margin-left: 10px;
   width: calc(100% - 35px);
-  font-size: 0.6em;
+  font-size: 0.8em;
   font-family: 'Montserrat', sans-serif;
   font-weight: 300;
 }
@@ -115,17 +123,33 @@ body {
 
 .leftCol .leftArticle .specifyDate {
   float: left;
-  margin-left: calc((80% - 220px)/2);
-  font-size: 0.7em;
+  width: 100%;
+  font-size: 0.9em;
   margin-top: 7%;
 }
 
 // CALENDAR STYLE*************************************************************************************
 .leftCol .leftArticle .calendar {
   float: left;
-  margin-left: calc((80% - 220px)/2);
-  margin-top: 4%;
-  width: 220px;
+  width: 100%;
+  padding-top: 100%;
+  margin-top: 10px;
+  position: relative;
+}
+
+#datepicker {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.leftCol .leftArticle .calendar select {
+  float: left;
+  background: none;
+  border: none;
+  margin-left: calc(50% - 40px);
+  margin-top: 5%;
 }
 
 // CALENDAR JQUERY STYLE*******************************************************************************
@@ -133,13 +157,47 @@ body {
   border: 1px solid rgb(125, 193, 224) !important;
   border-radius: 0 !important;
   width: calc(100% - 8px) !important;
-  height: 180px !important;
+  height: 100% !important;
   background: none !important;
+}
+
+.ui-datepicker table {
+  width: 100%;
+  height: 90%;
+  margin: 0;
+}
+
+.ui-datepicker tr {
+  display: flex;
+  width: 100%;
+  height: calc(100% / 7);
+}
+
+.ui-datepicker td {
+  width: calc(100% / 7);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ui-datepicker .ui-corner-all:hover {
+  background-color: transparent !important;
+  border-color: transparent;
+}
+
+.ui-datepicker td a {
+  height: 60%;
+  width: 60%;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
 }
 
 .ui-datepicker-header {
   border: none !important;
   background: none !important;
+  height: 10%;
 }
 
 .ui-datepicker-header .ui-datepicker-year {
@@ -155,10 +213,31 @@ body {
   border: none !important;
   color: white !important;
   text-align: center !important;
+  text-decoration: none;
 }
 
-.ui-datepicker-calendar tbody td a:hover {
-  background: orange !important;
+.ui-datepicker .ui-datepicker-prev span,
+.ui-datepicker .ui-datepicker-next span {
+  border-top: 2px solid white;
+  border-right: 2px solid white;
+  width: 8px;
+  height: 8px;
+  cursor: pointer;
+  top: 60% !important;
+  left: 60% !important;
+}
+
+.ui-datepicker .ui-datepicker-prev span {
+  transform: rotate(-135deg);
+}
+
+.ui-datepicker .ui-datepicker-next span {
+  transform: rotate(45deg);
+}
+
+.ui-datepicker-calendar tbody td a:hover,
+.ui-datepicker-calendar .ui-state-active {
+  background: rgb(255, 166, 0) !important;
   border-radius: 50% !important;
 }
 
@@ -174,6 +253,8 @@ body {
   float: left;
   height: 3%;
   width: 97%;
+  display: flex;
+  align-items: center;
   background: white;
   padding: 1%;
   padding-left: 2%;
@@ -195,6 +276,23 @@ body {
   background-color: grey;
 }
 
+.map {
+  position: relative;
+  .btn-group {
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    #history,
+    #current {
+      padding: 10px;
+      background-color: white;
+      border: none;
+      color: black;
+    }
+  }
+}
+
 .map-button {
   background-color: #7ea5e7;
   color: white;
@@ -210,4 +308,44 @@ body {
   float: left;
   width: 100%; // background: rgb(49, 32, 161);
   height: 35%;
+  display: flex;
+  flex-direction: row;
+  #lines {
+    height: 100%;
+    width: 70%;
+  }
+  #pie {
+    height: 100%;
+    width: 30%;
+  }
+}
+
+.gm-style-iw {
+  top: 0 !important;
+  left: 0 !important;
+  width: 250px !important;
+  height: 117px !important;
+  div {
+    width: 100% !important;
+    max-width: unset !important;
+  }
+}
+
+.info-window {
+  width: 253px;
+  height: 117px;
+  display: flex;
+  flex-direction: row;
+}
+
+.info-img {
+  height: 100%;
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  img {
+    height: 100%;
+  }
 }
