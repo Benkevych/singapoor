@@ -21,7 +21,7 @@ body {
   float: left;
   width: 25%;
   height: 100vh;
-  background: linear-gradient(rgb(148, 183, 247), rgb(0, 8, 255));
+  background: linear-gradient(to bottom, rgb(148, 183, 247), rgb(0, 8, 255));
   overflow: hidden;
 }
 
@@ -96,7 +96,6 @@ body {
   margin-left: 10px;
   width: calc(100% - 35px);
   font-size: 0.8em;
-  font-family: 'Montserrat', sans-serif;
   font-weight: 300;
 }
 
@@ -131,8 +130,8 @@ body {
 // CALENDAR STYLE*************************************************************************************
 .leftCol .leftArticle .calendar {
   float: left;
-  width: 100%;
-  padding-top: 100%;
+  width: 80%;
+  padding-top: 80%;
   margin-top: 10px;
   position: relative;
 }
@@ -260,6 +259,9 @@ body {
   padding-left: 2%;
   color: black;
   box-shadow: 0 4px 2px -2px rgb(198, 198, 198);
+  span{
+    color: black;
+  }
 }
 
 .rightCol .map {
